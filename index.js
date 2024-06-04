@@ -16,7 +16,7 @@ app.get("/contact", (req, res) => {
 })
 
 app.all('*', (req, res) => {
-  res.status(404).sendFile(path.resolve("./404html"))
+  res.status(404).sendFile(path.resolve("./404.html"))
 });
 
 
