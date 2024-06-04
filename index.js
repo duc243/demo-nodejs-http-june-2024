@@ -1,27 +1,27 @@
-const http = require("http");
-const fs = require("fs");
+const path = require("path")
+const port = 3000;
+const express = require("express");
+const app = express();
 
-const server = http.createServer(function (req, res) {
-  if (req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(fs.readFileSync("./index.html", "utf-8"));
-  } else if (req.url === "/contact") {
-    // retourner la page contact
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(fs.readFileSync("./contact.html", "utf-8"));
-  } else if (req.url === "/about") {
-    // retourner la page about
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(fs.readFileSync("./about.html", "utf-8"));
-  } else {
-    // retourner la page 404
-    res.writeHead(404, { "Content-Type": "text/html" });
-    res.end(fs.readFileSync("./404.html", "utf-8"));
-  }
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve("./index.html"))
+})
+
+app.get("/about", (req, res) => {
+  res.sendFile(path.resolve("./about.html"))
+})
+
+app.get("/contact", (req, res) => {
+  res.sendFile(path.resolve("./contact.html"))
+})
+
+app.all('*', (req, res) => {
+  res.status(404).sendFile(path.resolve("./404html"))
 });
 
-const port = 3000;
 
-server.listen(port, function () {
+
+
+app.listen(port, function () {
   console.log("Le serveur est lancé");
 });
