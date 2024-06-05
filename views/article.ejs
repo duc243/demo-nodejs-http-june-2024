@@ -1,4 +1,12 @@
 <%- include("./partials/header.ejs", {title: article.title}) %>
 
+<%- include("./partials/menu.ejs") %>
+
 <h1><%= article.title %></h1>
+<p>Description: <%= article.description %></p>
+<img src="<%=`${article.urlToImage}`%>" alt="">
+<p><%= article.content %></p>
+
+<span>Publié par: <%= article.author %> à <%= article.publishedAt %></span>
+
 <%- include("./partials/footer.ejs") %>
