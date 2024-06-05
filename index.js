@@ -32,7 +32,7 @@ app.get("/articles/:slug", (req, res) => {
   
 });
 
-app.get("/*", (req, res, next) => {
+app.get("/*", (req, res) => {
   res.render("404");
 });
 
