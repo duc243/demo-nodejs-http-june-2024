@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+const methodOverride = require('method-override');
 const app = express();
 const { body, validationResult } = require("express-validator");
 
@@ -8,6 +8,7 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 function addArticleValidations() {
   return [
@@ -68,21 +69,24 @@ app.post("/articles", addArticleValidations(), (req, res) => {
 
 
 
-// // Route pour supprimer un article
-// app.delete("/articles/:slug", (req, res) => {
-//   const { slug } = req.params;
+// Route pour supprimer un article
+app.delete("/articles/:slug", (req, res) => {
+  const { slug } = req.params;
 
-//   // Trouvez l'index de l'article dans le tableau
-//   const articleIndex = articles.findIndex((article) => article.slug === slug);
 
-//   if (articleIndex !== -1) {
-//     // Supprimez l'article du tableau
-//     articles.splice(articleIndex, 1);
-//     res.redirect("/articles"); // Redirigez vers la liste des articles
-//   } else {
-//     res.render("404"); // Affichez une page 404 si l'article n'est pas trouvé
-//   }
-// });
+  // Trouvez l'index de l'article dans le tableau
+  const articleIndex = articles.findIndex((article) => article.slug === slug);
+
+  if (articleIndex !== -1) {
+    console.log('b');
+    // Supprimez l'article du tableau
+    articles.splice(articleIndex, 1);
+    res.redirect("/articles"); // Redirigez vers la liste des articles
+  } else {
+    console.log('a');
+    res.render("404"); // Affichez une page 404 si l'article n'est pas trouvé
+  }
+});
 
 app.get("/articles/:slug", (req, res) => {
   const { slug } = req.params;

@@ -10,9 +10,9 @@
     <button type="button">Modifier</button>
 </div>
 <form method="POST" action="/articles/<%= article.slug %>?_method=DELETE">
-    <button type="submit">Supprimer</button>
+    <button id="delete-article" type="submit">Supprimer</button>
 </form>
   
 
-<script src="/js/updateArticle.js"></script>
+<script src="/js/deleteArticle.js"></script>
 <%- include("./partials/footer.ejs") %>
