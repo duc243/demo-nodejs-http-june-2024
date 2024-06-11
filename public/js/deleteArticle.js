@@ -10,8 +10,8 @@ deleteButton.addEventListener("click", async () => {
       .innerText.toString();
     const slug = title
       .toLowerCase()
-      .replace(/[^\w\s-]/g, "") // Supprime les caractères spéciaux
-      .replace(/\s+/g, "-") // Remplace les espaces par des tirets
+      .replace(/[^\w\s-]/g, "") 
+      .replace(/\s+/g, "-") 
       .trim();
 
     console.log(slug);

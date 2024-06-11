@@ -1,5 +1,6 @@
 const express = require("express");
 const methodOverride = require('method-override');
+const fs = require('fs');
 const app = express();
 const { body, validationResult } = require("express-validator");
 
@@ -64,27 +65,22 @@ app.post("/articles", addArticleValidations(), (req, res) => {
 
   articles.push(article);
 
+  fs.writeFileSync('./data/db.json', JSON.stringify(articles, null, 2), 'utf-8')
+
   res.send("ok");
 });
 
 
-
-// Route pour supprimer un article
 app.delete("/articles/:slug", (req, res) => {
   const { slug } = req.params;
 
-
-  // Trouvez l'index de l'article dans le tableau
   const articleIndex = articles.findIndex((article) => article.slug === slug);
 
   if (articleIndex !== -1) {
-    console.log('b');
-    // Supprimez l'article du tableau
     articles.splice(articleIndex, 1);
-    res.redirect("/articles"); // Redirigez vers la liste des articles
+    res.redirect("/articles");
   } else {
-    console.log('a');
-    res.render("404"); // Affichez une page 404 si l'article n'est pas trouvé
+    res.render("404"); 
   }
 });
 
