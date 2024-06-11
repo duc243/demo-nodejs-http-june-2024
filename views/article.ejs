@@ -5,4 +5,14 @@
 <h2><%= article.description %></h2>
 <img src="<%= `${article.urlToImage}` %>" alt="gallery image" />
 <p><%= article.content %></p>
+
+<div>
+    <button type="button">Modifier</button>
+</div>
+<form method="POST" action="/articles/<%= article.slug %>?_method=DELETE">
+    <button type="submit">Supprimer</button>
+</form>
+  
+
+<script src="/js/updateArticle.js"></script>
 <%- include("./partials/footer.ejs") %>
