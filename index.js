@@ -1,5 +1,5 @@
 const express = require("express");
-const methodOverride = require('method-override');
+//const methodOverride = require('method-override');
 const fs = require('fs');
 const app = express();
 const { body, validationResult } = require("express-validator");
@@ -9,7 +9,7 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
-app.use(methodOverride('_method'));
+//app.use(methodOverride('_method'));
 
 function addArticleValidations() {
   return [
