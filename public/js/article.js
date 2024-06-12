@@ -1,4 +1,5 @@
 const deleteButton = document.getElementById("delete-article");
+const publishedAt = document.getElementById('published-at').innerText;
 
 deleteButton.addEventListener("click", async () => {
   const confirmation = confirm("Voulez-vous vraiment supprimer cet article ?");
@@ -6,6 +7,13 @@ deleteButton.addEventListener("click", async () => {
   if (confirmation) deleteArticle();
 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const timeAgo = moment(publishedAt).fromNow();
+
+  document.getElementById('time-ago').innerText = timeAgo;
+});
+
 
 
 const deleteArticle = async () => {

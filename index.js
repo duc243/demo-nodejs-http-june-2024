@@ -48,12 +48,6 @@ app.get("/articles", (req, res) => {
   res.render("articles", { articles });
 });
 
-// titre :  pas vide, echapper, max : 255 min: 5
-// auteur : pas vide, echapper, max: 50 min: 2
-// image: pas vide, url
-// description: pas vide, echapper, max : 500 min: 5
-// contenu : pas vide, echapper, max : 500 min: 5
-
 app.post("/articles", addArticleValidations(), (req, res) => {
   const article = req.body;
 
@@ -78,7 +72,7 @@ app.delete("/articles/:slug", (req, res) => {
 
   if (articleIndex !== -1) {
     articles.splice(articleIndex, 1);
-    res.redirect("/articles");
+    res.redirect("/articles"); 
   } else {
     res.render("404"); 
   }
